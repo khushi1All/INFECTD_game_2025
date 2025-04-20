@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxlfow51pewg8"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_vdgdr"]
+[ext_resource type="Texture2D" uid="uid://lvkbl2s1m2l7" path="res://Assets/mainMenuBg.png" id="1_wreo8"]
+[ext_resource type="FontFile" uid="uid://7k83qne0dq4b" path="res://Assets/Sounds/Orbitron-ExtraBold.ttf" id="2_4b2r2"]
+[ext_resource type="AudioStream" uid="uid://kbbafb3x83ar" path="res://Assets/Sounds/buttonSound.mp3" id="3_qm32e"]
+[ext_resource type="AudioStream" uid="uid://b3ivm4lb70r24" path="res://Assets/Sounds/mainmenubg.mp3" id="5_ncs33"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_vdgdr")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1929.0
+offset_bottom = 1083.0
+texture = ExtResource("1_wreo8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 575.0
+offset_top = 136.0
+offset_right = 1311.0
+offset_bottom = 602.0
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(210, 86)
+stream = ExtResource("3_qm32e")
+volume_db = 16.0
+parameters/looping = true
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ncs33")
+volume_db = 22.0
+autoplay = true
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 2
+offset_left = 371.0
+offset_top = 676.0
+offset_right = 614.0
+offset_bottom = 768.0
+theme_override_font_sizes/font_size = 30
+text = " Start Game"
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="Instructions" type="Button" parent="."]
+layout_mode = 2
+offset_left = 849.0
+offset_top = 675.0
+offset_right = 1075.0
+offset_bottom = 766.875
+theme_override_font_sizes/font_size = 30
+text = " Instructions
+"
+vertical_icon_alignment = 0
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 2
+offset_left = 1315.0
+offset_top = 670.0
+offset_right = 1529.0
+offset_bottom = 761.875
+theme_override_font_sizes/font_size = 30
+text = "Quit Game
+"
+vertical_icon_alignment = 0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 459.0
+offset_top = 281.0
+offset_right = 1407.0
+offset_bottom = 507.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.169245, 0.169245, 0.169245, 1)
+theme_override_fonts/font = ExtResource("2_4b2r2")
+theme_override_font_sizes/font_size = 180
+text = " INFECTD 
+"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Instructions" to="." method="_on_instructions_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

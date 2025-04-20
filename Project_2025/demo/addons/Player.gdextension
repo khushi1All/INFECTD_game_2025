@@ -1,0 +1,8 @@
+[configuration]
+entry_symbol = "zombified_escape_init"
+compatibility_minimum = "4.1"
+compatibility_maximum = "4.3" 
+
+ [libraries]
+windows.64 = "res://addons/libgdexample.windows.template_debug.x86_64.dll"
+

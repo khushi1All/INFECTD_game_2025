@@ -1,0 +1,60 @@
+import os
+import sys
+
+# Use os.getcwd() instead of __file__
+project_root = os.getcwd()
+
+# Define the Godot C++ bindings path
+godot_cpp_path = os.path.join(project_root, "godot-cpp")
+
+# Ensure the Godot C++ bindings exist
+if not os.path.exists(godot_cpp_path):
+    print("Error: godot-cpp not found! Make sure it's in the correct path.")
+    sys.exit(1)
+
+# Load Godot C++ bindings SConstruct
+env = SConscript(os.path.join(godot_cpp_path, "SConstruct"))
+
+# Set source and include paths
+env.Append(CPPPATH=[os.path.join(project_root, "src")])  # Include src directory for headers
+env.Append(LIBPATH=[os.path.join(godot_cpp_path, "bin")])  # Path to compiled Godot C++ library
+
+# Add the correct library based on platform
+if env["platform"] == "windows":
+    env.Append(LIBS=["godot-cpp.windows.template_release.x86_64"])
+elif env["platform"] == "linux":
+    env.Append(LIBS=["godot-cpp.linux.template_release.x86_64"])
+elif env["platform"] == "macos":
+    env.Append(LIBS=["godot-cpp.macos.template_release.x86_64"])
+
+# Get all source files from src/
+sources = Glob(os.path.join(project_root, "src", "*.cpp"))
+
+# Ensure output directory exists
+output_dir = os.path.join(project_root, "bin")
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
+# Build the shared library based on the platform
+if env["platform"] == "macos":
+    library = env.SharedLibrary(
+        os.path.join(output_dir, "libgdexample.dylib"),
+        source=sources,
+    )
+elif env["platform"] == "ios":
+    library = env.StaticLibrary(
+        os.path.join(output_dir, "libgdexample.a"),
+        source=sources,
+    )
+elif env["platform"] == "windows":
+    library = env.SharedLibrary(
+        os.path.join(output_dir, "gdexample.dll"),
+        source=sources,
+    )
+else:  # Linux & others
+    library = env.SharedLibrary(
+        os.path.join(output_dir, "libgdexample.so"),
+        source=sources,
+    )
+
+Default(library)

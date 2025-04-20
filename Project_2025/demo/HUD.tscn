@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhs844tsgwra2"]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_2hnha"]
+[ext_resource type="FontFile" uid="uid://7k83qne0dq4b" path="res://Assets/Sounds/Orbitron-ExtraBold.ttf" id="2_fdymk"]
+[ext_resource type="AudioStream" uid="uid://kbbafb3x83ar" path="res://Assets/Sounds/buttonSound.mp3" id="3_x3x1q"]
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_2hnha")
+
+[node name="LabelContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 150)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 5
+
+[node name="ScoreLabel" type="Label" parent="LabelContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.10748, 0.10748, 0.10748, 1)
+theme_override_fonts/font = ExtResource("2_fdymk")
+theme_override_font_sizes/font_size = 22
+
+[node name="AntidoteLabel" type="Label" parent="LabelContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.051971, 0.051971, 0.051971, 1)
+theme_override_fonts/font = ExtResource("2_fdymk")
+theme_override_font_sizes/font_size = 22
+
+[node name="PositionLabel" type="Label" parent="LabelContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.0687983, 0.0687983, 0.0687983, 1)
+theme_override_fonts/font = ExtResource("2_fdymk")
+theme_override_font_sizes/font_size = 22
+
+[node name="LevelPopupLabel" type="Label" parent="."]
+offset_left = 733.0
+offset_top = 488.0
+offset_right = 1125.0
+offset_bottom = 640.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_fdymk")
+theme_override_font_sizes/font_size = 70
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="Quit" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -169.0
+offset_top = 54.0
+offset_right = -62.0
+offset_bottom = 110.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 25
+text = "QUIT
+"
+
+[node name="QuitSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1751, 54)
+stream = ExtResource("3_x3x1q")
+volume_db = 16.0
+
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
