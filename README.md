@@ -145,6 +145,7 @@ Have feedback, suggestions, or want to collaborate?
 - GitHub: [@khushi1All](https://github.com/khushi1All)
 - Email: *khushi.7all@gmail.com* 
 - LinkedIn: *https://www.linkedin.com/in/khushi-kumari-a5585830b/*
+- Youtube: *https://youtu.be/JRMVHlyJLgY?si=tJBCLWKVBZ21fkXi*
 
 ---
 
